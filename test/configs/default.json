@@ -1,0 +1,11 @@
+{
+    "test": {
+       "more": {
+            "final": {
+                "value": 123
+            }
+       },
+       "another": "another value"
+    },
+    "foo": "bar"
+}
