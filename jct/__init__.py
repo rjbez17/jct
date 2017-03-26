@@ -7,6 +7,6 @@
     :license: MIT, see LICENSE for more details.
 """
 
-__version__ = '0.1-dev'
+__version__ = '0.0.2'
 
 from .jct import Jct, Config, create_config, load_env_vars
