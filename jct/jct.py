@@ -4,7 +4,7 @@ from logging import getLogger, basicConfig
 
 
 basicConfig(format='%(asctime)s %(name)s:%(lineno)s %(levelname)s: %(message)s')
-logger = getLogger('yact')
+logger = getLogger('jct')
 
 
 def _get_list(l):
@@ -53,16 +53,16 @@ def load_env_vars(prefix):
     return o
 
 
-def create_config(env_prefix='YACT'):
+def create_config(env_prefix='JCT'):
     """Loads config values from env vars as well as config values from
     env vars. Returns a Yact object with the found values"""
-    home_path = os.path.join(os.path.expanduser('~'), '.yact')
-    default_paths = '/etc/yact,{0}'.format(home_path)
-    env = os.getenv('YACT_ENV', 'default')
-    default_file = os.getenv('YACT_DEFAULT_FILE', 'default.json')
-    config_paths = os.getenv('YACT_CONFIG_PATHS', default_paths).split(',')
-    return Yact(env=env, default_file=default_file, config_paths=config_paths,
-                **load_env_vars(env_prefix))
+    home_path = os.path.join(os.path.expanduser('~'), '.jct')
+    default_paths = '/etc/jct,{0}'.format(home_path)
+    env = os.getenv('JCT_ENV', 'default')
+    default_file = os.getenv('JCT_DEFAULT_FILE', 'default.json')
+    config_paths = os.getenv('JCT_CONFIG_PATHS', default_paths).split(',')
+    return Jct(env=env, default_file=default_file, config_paths=config_paths,
+               **load_env_vars(env_prefix))
 
 
 class Config(dict):
@@ -87,7 +87,7 @@ class Config(dict):
         return d
 
 
-class Yact(Config):
+class Jct(Config):
     """Inherits Config class with the addition of loading JSON config files"""
 
     def __init__(self, env='default', default_file='default.json',

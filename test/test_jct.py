@@ -1,6 +1,6 @@
 import os
 import json
-from yact import *
+from jct import *
 
 
 # Config Tests
@@ -31,16 +31,16 @@ def test_valid_config_path_default():
         assert c.get('test.more.final.value') == c['test']['more']['final']['value']
 
 
-# Yact Tests
+# Jct Tests
 def test_bad_default_default():
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    assert Yact(env='asf', default_file="asf.json", config_paths=[os.path.join(dir_path, 'configs')]) == {}
+    assert Jct(env='asf', default_file="asf.json", config_paths=[os.path.join(dir_path, 'configs')]) == {}
 
 
 def test_period_gets():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     path = 'configs'
-    c = Yact(env='default', config_paths=[os.path.join(dir_path, path)])
+    c = Jct(env='default', config_paths=[os.path.join(dir_path, path)])
     assert c.get('foo') == 'bar'
     assert c.get('test.another') == 'another value'
     assert c.get('test.bad.bad.value') is None
@@ -52,7 +52,7 @@ def test_period_gets():
 def test_merge():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     path = 'configs'
-    c = Yact(env='test', config_paths=[os.path.join(dir_path, path)])
+    c = Jct(env='test', config_paths=[os.path.join(dir_path, path)])
     assert c.get('foo') == 'bar'
     assert c.get('test.another') == 'another value'
     assert c.get('test.bad.bad.value') is None
@@ -64,12 +64,12 @@ def test_merge():
 
 
 def test_empty_paths():
-    assert Yact(config_paths=[]) == {}
+    assert Jct(config_paths=[]) == {}
 
 
 def test_unknown_env():
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    c = Yact(env='unknown', config_paths=[os.path.join(dir_path, 'configs')])
+    c = Jct(env='unknown', config_paths=[os.path.join(dir_path, 'configs')])
     with open(os.path.join(dir_path, 'configs', 'default.json')) as f:
         f = json.load(f)
         assert c == f
