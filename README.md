@@ -5,7 +5,7 @@ JCT - JSON Configuration Tool
 Installation
 ------------
 
-    pip install jct
+    pip install jct==0.0.2
 
 Usage
 -----
